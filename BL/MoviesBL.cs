@@ -1,11 +1,12 @@
 ﻿using System.Text.Json.Nodes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using RedisCaching.Interfaces;
 using RestSharp;
 
 namespace RedisCaching.BL
 {
-    public class MoviesBL
+    public class MoviesBL:IMoviesBL
     {
         private readonly IConfiguration _config;
         public MoviesBL(IConfiguration config) 
