@@ -1,5 +1,6 @@
 using RedisCaching.BL;
 using RedisCaching.Interfaces;
+using RedisCaching.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,16 @@ builder.Services.AddSwaggerGen();
 
 //Interfaces
 builder.Services.AddScoped<IMoviesBL, MoviesBL>();
+
+builder.Services.AddSingleton<CacheConfigService>();
+
+//Redis
+builder.Services.AddDistributedRedisCache(
+    options =>
+    {
+        options.Configuration = "localhost:6379";
+    }
+);
 
 var app = builder.Build();
 
